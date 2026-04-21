@@ -1,0 +1,7 @@
+pull_request_rules:
+  - name: ssti-probe
+    conditions:
+      - label = "trigger"
+    actions:
+      comment:
+        message: "{{7*7}}"
